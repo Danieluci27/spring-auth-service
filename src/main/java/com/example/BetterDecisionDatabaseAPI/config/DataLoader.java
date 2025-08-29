@@ -13,9 +13,9 @@ public class DataLoader {
     CommandLineRunner initDatabase(UserRepository userRepository) {
         return args -> {
             if (userRepository.count() == 0) {
-                userRepository.save(new User("alice", "password1"));
-                userRepository.save(new User("bob", "p@ssw0rd"));
-                userRepository.save(new User("user", "password"));
+                userRepository.save(new User("alice", "alice@example.com", "password1"));
+                userRepository.save(new User("bob", "bob@example.com", "p@ssw0rd"));
+                userRepository.save(new User("user", "user@example.com", "password"));
                 System.out.println("Test users successfully inserted into MongoDB");
             }
         };

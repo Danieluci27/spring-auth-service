@@ -35,8 +35,16 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/check-username","/auth/check-email", "/auth/login", "/auth/register", "/hello", "/actuator/health", "/actuator/me").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/auth/check-username",
+                                         "/auth/check-email",
+                                         "/auth/find/request",
+                                         "/auth/find/verify",
+                                         "/auth/login",
+                                         "/auth/register",
+                                         "/hello",
+                                         "/actuator/health",
+                                         "/actuator/me",
+                                         "/auth/password/update").permitAll().anyRequest().authenticated()
                 )
                 // Our JWT filter should run before the built-in username/password filter
                 .addFilterBefore(new JwtAuthFilter(jwtService), UsernamePasswordAuthenticationFilter.class);
